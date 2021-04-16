@@ -1,0 +1,130 @@
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffb7c5">
+    <meta name="og:title" content="Sunlight Botlist | discordlist.fun" />
+    <link rel="icon" href="https://media.discordapp.net/attachments/798983394595438602/822538769970233424/botlsitserve-Kurtarld.jpg?width=498&height=498" type="image/x-icon">
+    <meta name="og:url" content="https://discordlist.fun" />
+    <meta name="og:description" content="Sunlight Botlist | Botunuzu hem siteye hem de serverimize ekletebilirsiniz.You can add your bot to website and server.">
+    <meta name="og:image" content="https://media.discordapp.net/attachments/798983394595438602/822539378164760596/botlsitserve-Kurtarld.png?width=498&height=498" />
+    <meta name="description" content="Bu sitede, discord botlarına bakabilir,botlarınızı sunucumuza ve siteye ekletebilirsiniz.">
+    <meta name="twitter:card" value="summary">
+    <meta name="twitter:title" content="Sunlight Botlist">
+    <meta name="twitter:description" content="Bu sitede, discord botlarına bakabilir,botlarınızı sunucumuza ve siteye ekletebilirsiniz.">
+    <meta name="twitter:image" content="https://media.discordapp.net/attachments/798983394595438602/822539378164760596/botlsitserve-Kurtarld.png?width=498&height=498">
+	<script data-ad-client="ca-pub-9328314975624795" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://discordlist.fun/"
+    }
+    </script>
+    <link rel="stylesheet" id="theme" href="/assets/css/style.css?v=1">
+    <link rel="stylesheet" id="theme" href="/assets/css/switch.css?v=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+    <!--<script src="https://www.google.com/recaptcha/api.js" async defer></script>-->
+    <script src="/assets/js/main.min.js?v=1"></script>
+    <script src="/assets/js/scripts.js?v=1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0T66DR6Q70"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0T66DR6Q70');
+    </script>
+    <title><%= title %></title>
+</head>
+<body>
+    <div class="bg-dark pt-4">
+      <nav class="navbar bg-dark pb-4" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="ml-4 navLogo" href="/">
+            <img draggable="false" id="headerLogo" src="https://cdn.discordapp.com/attachments/798983394595438602/822539378164760596/botlsitserve-Kurtarld.png" alt="Sunlight Botlist | Discord Bot List" width="65" height="65">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu bg-dark">
+          <div class="navbar-start">
+            <a href="/" class="navbar-item menuItem">
+            <i class="fad fa-home"></i>&nbsp;Ana Menü
+            </a>
+            <a href="/bots" class="navbar-item menuItem">
+            <i class="fad fa-robot"></i>&nbsp;Botlar
+            </a>
+			<a href="/bots/submit" class="navbar-item menuItem">
+            <i class="fad fa-plus"></i>&nbsp;Bot Ekle
+            </a>
+            <a href="/tags" class="navbar-item menuItem">
+            <i class="fad fa-tags"></i>&nbsp;Etiketler
+            </a>
+            <a href="/discord" class="navbar-item menuItem" target="_blank">
+            <i class="fab fa-discord"></i>&nbsp;Discord 
+            </a>
+			 <a href="/partners" class="navbar-item menuItem">
+            <i class="fad fa-stars"></i>&nbsp;Partnerler
+            </a>
+            <a href="/team-members" class="navbar-item menuItem">
+            <i class="fad fa-users"></i>&nbsp;Founders
+            </a>
+          
+    
+          </div>
+      
+          <div class="navbar-end mt-1 ">
+            <% if (!user) { %>
+            <a href="/auth/login" class="navbar-item menuItem mr-5">
+             <i class="fab fa-discord"></i>&nbsp;Giriş Yap
+            </a>
+            <% } else { %>
+              <div class="navbar-item z has-dropdown is-hoverable loginOkNavItem" style="margin-top: -10px;">
+                <a class="menuItem navUser z navbar-link">
+                  <img draggable="false" src="https://cdn.discordapp.com/avatars/<%=user.id%>/<%= user.avatar %>?size=2048" class="mr-2" style="width: 30px; border-radius: 50%;">
+                  <%= user.username %>#<%= user.discriminator %>
+                </a>
+                <div class="navbar-dropdown" style="z-index: 99999999999999999999999999999999999999999999999999 !important;">
+                  <a href="/user/<%=user.id%>" class="navbar-item">
+                    <i class="fad fa-user mr-2"></i>&nbsp;Profil
+                  </a>
+                  <a href="/bots/submit" class="navbar-item">
+                    <i class="fad fa-paper-plane mr-2"></i>&nbsp;Bot Ekle
+                  </a>
+				   <a href="/devils" class="navbar-item">
+                    <i class="fas fa-robot mr-2"></i>&nbsp;Devils Botlist
+                  </a>
+                  <%if (bot.guilds.cache.get("766340643617767485").members.cache.get(req.user.id)){
+                    if (bot.guilds.cache.get("766340643617767485").members.cache.get(req.user.id).roles.cache.get("788517834116169779")){
+                  %>
+                  <a href="/admin" class="navbar-item">
+                    <i class="fa fa-user-crown mr-2"></i>&nbsp;Admin Panel
+                  </a>
+                  <%
+                    }
+                  }%>
+                  <hr class="navbar-divider">
+                  <a href="/auth/logout" class="navbar-item">
+                    <i class="fad fa-sign-out-alt mr-2"></i>&nbsp;Çıkış Yap
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </nav>
+</div>
+<script src="https://discordlist.fun/socket.io/socket.io.min.js"></script>
+<script>
+  var socket = io();
+</script>

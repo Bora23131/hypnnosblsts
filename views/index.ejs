@@ -1,0 +1,198 @@
+<%- include("static/header.ejs"); %>
+  <div class="bg-dark" style="background: url(/assets/img/particles.png);background-size: 30%;">
+  <div class="p-5" style="margin-top: -10px;">
+        <div class="container px-3 mt-5 mb-5">
+          <div class="mb-3 mx-auto has-text-centered">
+            <img draggable="false" id="indexHeader" src="https://cdn.discordapp.com/attachments/798983394595438602/822539378164760596/botlsitserve-Kurtarld.png" width="220" alt="Discord Bots | SunLight Bot List">
+            <h1 class="has-text-white title mt-3" style="font-weight: 800;">SunLight Bot List</h1>
+            <p class="content has-text-white" style="opacity: 0.6; margin-top: -20px;">Discord botlarına bakmak veya botunu ekletmek mi istiyorsun? Burası tam sana göre!</p>
+            <div class="home-tags">
+              <a title=" Moderasyon Botları" href="/tag/Moderation" class="mainTag z" style="opacity: 0.6; margin-top: -20px;"><i class="fa fa-cogs"></i> Moderasyon</a>
+              <a title=" Müzik Botları" href="/tag/Music" class="mainTag z" style="opacity: 0.6; margin-top: -20px;"><i class="fa fa-music"></i> Müzik</a>
+              <a title=" Eğlence Botları" href="/tag/Fun" class="mainTag z" style="opacity: 0.6; margin-top: -20px;"><i class="fa fa-smile"></i> Eğlence</a>
+              <a title=" Oyun Botları" href="/tag/Game" class="mainTag z" style="opacity: 0.6; margin-top: -20px;"><i class="fa fa-gamepad"></i> Oyun</a>
+              <a title="Tüm Botlar" href="/tags" class="mainTag z" style="opacity: 0.6; margin-top: -20px;"><i class="fa fa-tags"></i> Tümü</a>
+            </div>
+            <div>
+              <div class="z mt-5">
+                <form action="/search">
+                  <input name="q" autocomplete="off" onfocus="$('.searchArea').show()" id="search" style="font-family: Arial, FontAwesome; z-index: 999999999; width: 470px;" class="z mainInput searchIcon isMobile" type="text"  placeholder="Sunlight Botlist'de ara!">
+                  <input type="hidden" name="page" value="1">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="searchArea isMobile">
+            <b class="has-text-white"><i class="fa fa-search"></i> Search Results</b>
+            <br>
+            <span class="has-text-white" id="searchResults">You haven't made any searchs. <br><br></span>
+            <button style="display:none;" class="showMore"><i class="fa fa-list"></i> Show More</button>
+            <input class="showMoreLink" type="hidden">
+          </div>
+      </div>
+    </div>
+  </div>
+<br><br>
+    <div class="container px-3 mt-5">
+      <div class="columns">
+        <div class="column">
+          <p class="has-text-white title is-large"><i class="fa fa-vote-yea has-text-info"></i>&nbsp; En Çok Oy Alan Botlar</p>
+      <p class="content has-text-white" style="margin-top: -20px;">En çok oy alan botlar bu kısımda sıralanmıştır!</p>
+        </div>
+        <div class="column">
+          <!--<img draggable="false" class="has-text-centered centered" style="width: 90%;" src="https://cdn.discordapp.com/attachments/794310443635310653/796808108797329438/Untitled-1.png">-->      </div>
+      </div>
+      
+      <div class="pt-5"></div>
+      <div class="columns is-multiline is-desktop mt-5 is-variable is-7">
+        
+      <%
+        for(let i = 0; i < bestBotsData.length; i++) {
+        if (i === 8) break;
+        let bbdBot = bestBotsData[i];
+      %>      
+
+        <div class="column is-3 mb-5">          
+            <div class="box botCard bg-dark">
+              <div>
+                <div class="is-inline-block">
+                  <span class="tag is-dark mt-1 w-100">Oylar : <%= bbdBot.votes %></span>
+                  <br>
+                  <span class="tag is-dark mt-1 w-100">Davetler : <%= bbdBot.invites %></span>
+                </div>
+                <img draggable="false" onerror="imgError(this);" alt="<%= bbdBot.username %> Bot" src="https://cdn.discordapp.com/avatars/<%= bbdBot.id %>/<%= bbdBot.avatar %>.webp?size=256" class="is-pulled-right	cardBotImg z">
+              </div>
+              <p class="cardBotName has-text-white mt-5"><%= bbdBot.username %> <%if (bot.guilds.cache.get("766340643617767485").members.cache.get(bbdBot.id)) { if (bot.guilds.cache.get("766340643617767485").members.cache.get(bbdBot.id).roles.cache.get("794266963282886686")) {%><span data-tippy-content="Certified" class="tippy has-text-info has-text-centered"><i class="fad fa-badge-check"></i></span><%}}%></p>   
+              <p class="cardBotDesc mt-1"><%= bbdBot.shortDescription.substring(0, 200) %></p>
+              <div class="cardButtons is-flex">
+                  <a title="<%= bbdBot.id %> Bot" href="/bot/<%= bbdBot.id %>" class="cardBtn1"><i class="fad fa-eye"></i>&nbsp;View</a>
+                  <a title="<%= bbdBot.id %> Invite" target="_blank" href="/bot/<%= bbdBot.id %>/invite" class="cardBtn2"><i class="fad fa-user-plus"></i>&nbsp;Invite</a>
+              </div>
+            </div>
+        </div>
+        <% } %>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <p class="has-text-white title is-large"><i class="fa fa-clock has-text-warning"></i> En son eklenen botlar</p>
+      <p class="content has-text-white" style="margin-top: -20px;">Sitemize en son eklenen botlar burada sıralanmıştır!</p>
+      <div class="pt-5"></div>
+      <div class="columns is-multiline is-desktop mt-5 is-variable is-7">
+      <%
+        for(let i = 0; i < lastAddedBots.length; i++) {
+        if (i === 8) break;
+        let labBots = lastAddedBots[i];
+      %>      
+
+        <div class="column is-3 mb-5">          
+            <div class="box botCard bg-dark">
+              <div>
+                <div class="is-inline-block">
+                  <span class="tag is-dark mt-1 w-100">Votes: <%= labBots.votes %></span>
+                  <br>
+                  <span class="tag is-dark mt-1 w-100">Invites: <%= labBots.invites %></span>
+                </div>
+                <img draggable="false" onerror="imgError(this);" alt="<%= labBots.username %> Bot" src="https://cdn.discordapp.com/avatars/<%= labBots.id %>/<%= labBots.avatar %>.webp?size=256" class="is-pulled-right	cardBotImg z">
+              </div>
+              <p class="cardBotName has-text-white mt-5"><%= labBots.username %></i> <%if (bot.guilds.cache.get("766340643617767485").members.cache.get(labBots.id)) { if (bot.guilds.cache.get("766340643617767485").members.cache.get(labBots.id).roles.cache.get("794266963282886686")) {%><span data-tippy-content="Certified" class="tippy has-text-info has-text-centered"><i class="fad fa-badge-check"></i></span><%}}%></p>   
+              <p class="cardBotDesc mt-1"><%= labBots.shortDescription.substring(0, 200) %></p>
+              <div class="cardButtons is-flex">
+                  <a title="<%= labBots.id %> Bot" href="/bot/<%= labBots.id %>" class="cardBtn1"><i class="fad fa-eye"></i>&nbsp;View</a>
+                  <a title="<%= labBots.id %> Invite" target="_blank" href="/bot/<%= labBots.id %>/invite" class="cardBtn2"><i class="fad fa-user-plus"></i>&nbsp;Invite</a>
+              </div>
+            </div>
+        </div>
+        <% } %>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <p class="has-text-white title is-large"><i class="fa fa-random has-text-danger"></i> Önerilen Botlar</p>
+      <p class="content has-text-white" style="margin-top: -20px;">Senin için önerdiğimiz botlar burada sıralanmıştır!</p>
+      <div class="pt-5"></div>
+      <div class="columns is-multiline is-desktop mt-5 is-variable is-7">
+      <%
+
+        let randomBots = Object.values(db.get("bots") || {}).filter(d => d.status > 0)
+        randomBots.forEach((val, key) => {
+          randomIndex = Math.ceil(Math.random()*(key + 1));
+          randomBots[key] = randomBots[randomIndex];
+          randomBots[randomIndex] = val;
+        });
+        for(let i = 0; i < randomBots.length; i++) {
+        if (i === 8) break;
+        let labBots = randomBots[i];
+        if (labBots) {
+      %>      
+
+        <div class="column is-3 mb-5">          
+            <div class="box botCard bg-dark">
+              <div>
+                <div class="is-inline-block">
+                  <span class="tag is-dark mt-1 w-100">Votes: <%= labBots.votes %></span>
+                  <br>
+                  <span class="tag is-dark mt-1 w-100">Invites: <%= labBots.invites %></span>
+                </div>
+                <img draggable="false" onerror="imgError(this);" alt="<%= labBots.username %> Bot" src="https://cdn.discordapp.com/avatars/<%= labBots.id %>/<%= labBots.avatar %>.webp?size=256" class="is-pulled-right	cardBotImg z">
+              </div>
+              <p class="cardBotName has-text-white mt-5"><%= labBots.username %> <%if (bot.guilds.cache.get("766340643617767485").members.cache.get(labBots.id)) { if (bot.guilds.cache.get("766340643617767485").members.cache.get(labBots.id).roles.cache.get("794266963282886686")) {%><span data-tippy-content="Certified" class="tippy has-text-info has-text-centered"><i class="fad fa-badge-check"></i></span><%}}%></p>   
+              <p class="cardBotDesc mt-1"><%= labBots.shortDescription.substring(0, 200) %></p>
+              <div class="cardButtons is-flex">
+                  <a title="<%= labBots.id %> Bot" href="/bot/<%= labBots.id %>" class="cardBtn1"><i class="fad fa-eye"></i>&nbsp;İncele</a>
+                  <a title="<%= labBots.id %> Invite" href="/bot/<%= labBots.id %>/invite" class="cardBtn2"><i class="fad fa-user-plus"></i>&nbsp;Davet</a>
+              </div>
+            </div>
+        </div>
+        <% }} %>
+      </div>
+      
+      </div>
+
+      <script>
+        $("#search, .searchArea").hover(function () {  
+          $(".searchArea").show();
+          $("#search").attr("style","width: 470px; border-radius: 4px 4px 0px 0px;");
+        }, function () {
+          $(".searchArea").hide();
+          $("#search").attr("style","width: 470px; border-radius: 4px 4px 4px 4px;");
+        });
+        $("#search").keyup(function () {
+          $(".searchArea").show();
+          $.ajax({
+            type: "POST",
+            url: "/api/search",
+            data: {key: $("#search").val()},
+            dataType: "json",
+            success: function (response) {
+              let message = "";
+              let data = response.data;
+              if (data.length == 0) {
+                $("#searchResults").html("You haven't made any searchs. <br><br>");
+                return;
+              }
+              for (let i = 0; i < data.length; i++) {
+                if (i === 5) break; 
+                let bot = data[i];
+                message += `<a href="/bot/${bot.id}"><div class='mt-3 mb-4 searchResultsBot'> <img draggable="false" onerror="imgError(this);" src='https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}'> <p style="margin-top: 3px;" class="ml-3">${bot.username}</p></div></a>`;
+              }
+              if (data.length > 5) {
+                $(".showMore").show();  
+                setInterval(() => {
+                  $(".showMoreLink").attr("value", `/search?q=${$("#search").val()}&page=1`);
+                }, 100);
+                $(".showMore").click(function () { window.location.href = $(".showMoreLink").val(); });    
+              }
+              $("#searchResults").html(message);
+            }
+          });
+        });
+      </script>
+
+    <%- include("static/footer.ejs"); %>
+    
